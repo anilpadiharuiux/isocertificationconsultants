@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #1e293b;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-dm-sans), system-ui, -apple-system, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(8, 145, 178, 0.16);
+    color: #162b4d;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-outfit), system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    color: #162b4d;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
+  }
+
+  /* Small, tracked, professional label */
+  .label {
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-teal-700;
+  }
+  .label-line::before {
+    content: "";
+    @apply inline-block h-px w-8 bg-teal-600;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-[15px] font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
+  /* Gold = the warm, inviting primary action */
+  .btn-primary {
+    @apply btn bg-gold-600 text-white shadow-[0_6px_16px_-6px_rgba(217,119,6,0.6)] hover:bg-gold-700 hover:shadow-[0_10px_24px_-8px_rgba(217,119,6,0.65)] focus-visible:ring-gold-600;
+  }
+  .btn-navy {
+    @apply btn bg-navy-900 text-white hover:bg-navy-800 focus-visible:ring-navy-900;
+  }
+  .btn-outline {
+    @apply btn border-2 border-navy-200 bg-white text-navy-900 hover:border-navy-900 hover:bg-navy-50 focus-visible:ring-navy-900;
+  }
+  .btn-ghost {
+    @apply btn text-navy-800 hover:bg-navy-50 focus-visible:ring-navy-300;
+  }
+
+  .card {
+    @apply rounded-xl border border-slate-200 bg-white shadow-[0_1px_3px_rgba(22,43,77,0.06),0_10px_30px_-18px_rgba(22,43,77,0.28)] transition-all duration-300;
+  }
+  .card-hover {
+    @apply hover:-translate-y-1 hover:border-slate-300 hover:shadow-[0_8px_20px_-6px_rgba(22,43,77,0.12),0_24px_48px_-24px_rgba(22,43,77,0.35)];
+  }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-1.5 text-sm font-semibold text-teal-700 hover:text-teal-800;
+  }
+}
+
+@layer utilities {
+  /* Warm neutral section background */
+  .bg-soft {
+    background-color: #f5f7fa;
+  }
+  /* Subtle engineering blueprint grid — evokes industrial without noise */
+  .bg-blueprint {
+    background-color: #ffffff;
+    background-image:
+      linear-gradient(to right, rgba(22, 43, 77, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(22, 43, 77, 0.045) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .bg-navy-panel {
+    background-color: #162b4d;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 50s linear infinite;
+}
+
+.hero-marquee {
+  animation: hero-marquee 38s linear infinite;
+  will-change: transform;
+}
+
+.hero-marquee-reverse {
+  animation-direction: reverse;
+  animation-duration: 44s;
+}
+
+.hero-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes hero-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
